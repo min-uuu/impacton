@@ -3,44 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" as="style" crossorigin
+        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
     <title>Document</title>
     <style>
 
         body {
-            width: 100vw;
-            height: 100vh;
             margin: 0;
             padding: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            font-family: "pretendard";
         }
 
         .content {
             display: flex;
-            /* align-items: center; */
-            /* justify-content: center; */
+            width: 100vw;
+            height: 100vh;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
         }
 
+
         .header {
-            background-color: lightblue;
+            display: flex;
+            width: 100vw;
+            height: 30vh;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
         }
+
         
-        img {
-            width: 50%;
+        #main-title {
+            height: 5vh;
+            margin-bottom: 5vh;
         }
+
+        #sub-title {
+            height: 10vh;
+            margin-bottom: 10vh;
+        }
+
+        .title {
+            font-size: 5vh;
+            font-weight: 800;
+            margin-bottom: 5vh;
+        }
+
+        .button {
+            font-size: 3vh;
+            font-weight: 600;
+            padding: 1vh;
+            background-color: black;
+            color: white;
+        }
+
+        .button:hover {
+            cursor: pointer;
+        }
+
+
     </style>
 </head>
 <body>
 
     <div class="content">
         <div class="header">
-            <div class="main-title">
-                <img src="./main-title.png" alt="">
-            </div>
-            <div class="sub-title">
-                <img src="./sub-title.png" alt="">
-            </div>
+            <img id="main-title" src="./main-title.png" alt="">
+            <img id="sub-title" src="./sub-title.png" alt="">
+        </div>
+        <div class="title">
+            <div>주제 선택</div>
+        </div>
+        <div class="button" onclick="go()">
+            시작하기!
         </div>
     </div>
 
@@ -48,36 +84,9 @@
 
     <script>
 
-        let teamList = ["1번팀", "2번팀", "3번팀", "4번팀", "5번팀", "6번팀", "7번팀", "8번팀", "9번팀", "10번팀", "11번팀", "12번팀", "13번팀", "14번팀"];
-        let itemList = [
-            {theme: "푸드/농업", age: "MZ 세대"}, 
-            {theme: "푸드/농업", age: "MZ 세대" }, 
-            {theme: "푸드/농업", age: "직장인 세대" }, 
-            {theme: "푸드/농업", age: "노인 세대" }, 
-            {theme: "푸드/농업", age: "노인 세대" },
-            {theme: "소셜미디어/커뮤니티", age: "MZ 세대" },
-            {theme: "소셜미디어/커뮤니티", age: "MZ 세대" },
-            {theme: "소셜미디어/커뮤니티", age: "직장인 세대" },
-            {theme: "소셜미디어/커뮤니티", age: "노인 세대" },
-            {theme: "여행/레저", age: "MZ 세대" },
-            {theme: "여행/레저", age: "직장인 세대" },
-            {theme: "여행/레저", age: "직장인 세대" },
-            {theme: "여행/레저", age: "노인 세대" },
-            {theme: "여행/레저", age: "노인 세대" },
-        ]
-
-        function getRandomAndRemove(list) {
-            const randomIndex = Math.floor(Math.random() * list.length);
-            const randomItem = list[randomIndex];
-            list.splice(randomIndex, 1);
-            return randomItem;
+        function go() {
+            window.location.href = "./pick.html"
         }
-
-        for (let i = 0; i < 14; i++) {
-                console.log(i)
-                console.log(getRandomAndRemove(teamList));
-                console.log(getRandomAndRemove(itemList));
-            }
 
     </script>
 </body>

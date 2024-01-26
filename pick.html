@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" as="style" crossorigin
+        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "pretendard";
+        }
+
+        .content {
+            display: flex;
+            width: 100vw;
+            height: 100vh;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+
+        .header {
+            display: flex;
+            width: 100vw;
+            height: 15vh;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+
+        #main-title {
+            height: 5vh;
+            margin-bottom: 10vh;
+        }
+
+
+        .title {
+            font-size: 4vh;
+            font-weight: 800;
+            margin-bottom: 5vh;
+        }
+
+        .button {
+            font-size: 3vh;
+            font-weight: 600;
+            padding: 1vh;
+            background-color: black;
+            color: white;
+        }
+
+        .button:hover {
+            cursor: pointer;
+            background-color: darkgray;
+        }
+
+        .main {
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .team {
+            font-size: 7vh;
+            font-weight: 800;
+            margin-bottom: 10vh;
+        }
+
+        .item {
+            width: 55vw;
+            font-size: 6vh;
+            font-weight: 800;
+            margin-bottom: 10vh;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="content">
+        <div class="header">
+            <img id="main-title" src="./main-title.png" alt="">
+        </div>
+        <div class="main">
+            <div class="title" id="order-text">
+                <div>1번째 주제 선택 팀</div>
+            </div>
+            <div class="team" id="team">
+                XX 팀
+            </div>
+            <div class="title">
+                <div>주제</div>
+            </div>
+            <div class="item">
+                <div id="theme">
+                    XXX
+                </div>
+                <div id="gen">
+                    XX
+                </div>
+            </div>
+        </div>
+        <div class="button" onclick="makeOrderText()">
+            추첨하기!
+        </div>
+    </div>
+
+
+
+    <script>
+
+        let teamList = ["1 팀", "2 팀", "3 팀", "4 팀", "5 팀", "6 팀", "7 팀", "8 팀", "9 팀", "10 팀", "11 팀", "12 팀", "13 팀", "14 팀"];
+        let teamListFixed = ["1 팀", "2 팀", "3 팀", "4 팀", "5 팀", "6 팀", "7 팀", "8 팀", "9 팀", "10 팀", "11 팀", "12 팀", "13 팀", "14 팀"];
+
+        
+        let itemList = [
+            { theme: "푸드/농업", gen: "MZ 세대" },
+            { theme: "푸드/농업", gen: "MZ 세대" },
+            { theme: "푸드/농업", gen: "직장인 세대" },
+            { theme: "푸드/농업", gen: "노인 세대" },
+            { theme: "푸드/농업", gen: "노인 세대" },
+            { theme: "소셜미디어/커뮤니티", gen: "MZ 세대" },
+            { theme: "소셜미디어/커뮤니티", gen: "MZ 세대" },
+            { theme: "소셜미디어/커뮤니티", gen: "직장인 세대" },
+            { theme: "소셜미디어/커뮤니티", gen: "노인 세대" },
+            { theme: "여행/레저", gen: "MZ 세대" },
+            { theme: "여행/레저", gen: "직장인 세대" },
+            { theme: "여행/레저", gen: "직장인 세대" },
+            { theme: "여행/레저", gen: "노인 세대" },
+            { theme: "여행/레저", gen: "노인 세대" },
+        ]
+
+        function getRandomAndRemove(list) {
+            const randomIndex = Math.floor(Math.random() * list.length);
+            const randomItem = list[randomIndex];
+            list.splice(randomIndex, 1);
+            return randomItem;
+        }
+
+
+        let orderNumber = 1
+
+        function firstRolling() {
+            console.log(orderNumber)
+
+            if (orderNumber == 15) {
+                window.location.href = "./finish.html"
+            }
+
+            let orderText = orderNumber + "번째 주제 선택 팀"
+            document.getElementById('order-text').innerHTML = orderText
+
+
+            function randomTeam() {
+                document.getElementById('team').innerHTML = getRandomAndRemove(teamList);
+            }
+
+            async function sleep(ms) {
+                return new Promise(resolve => setTimeout(resolve, ms));
+            }
+
+            let rollingTeamTemp = 0
+
+            function rollingTeamFunction() {
+                document.getElementById('team').innerHTML = teamListFixed[rollingTeamTemp % 13];
+                rollingTeamTemp = rollingTeamTemp + 1
+            }
+
+            async function rollingTeam() {
+                for (let i = 0; i < 50; i++) {
+                    rollingTeamFunction();
+                    await sleep(40);
+                }
+                randomTeam();
+            }
+
+            rollingTeam();
+        }
+
+        function secondRolling() {
+            let item = getRandomAndRemove(itemList);
+            let theme = item.theme;
+            let gen = item.gen
+
+            document.getElementById('theme').innerHTML = theme;
+            document.getElementById('gen').innerHTML = gen;
+
+            orderNumber = orderNumber + 1
+        }
+
+        let general = 1
+
+        function makeOrderText() {
+            if(general%2 > 0) {
+                document.getElementById('theme').innerHTML = "XXX";
+                document.getElementById('gen').innerHTML = "XX";
+                firstRolling();
+                general = general + 1;
+            } else {
+                secondRolling();
+                general = general + 1;
+            }
+            
+        }
+
+    </script>
+</body>
+
+</html>
