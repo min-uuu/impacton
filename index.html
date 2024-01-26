@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        body {
+            width: 100vw;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .content {
+            display: flex;
+            /* align-items: center; */
+            /* justify-content: center; */
+        }
+
+        .header {
+            background-color: lightblue;
+        }
+        
+        img {
+            width: 50%;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="content">
+        <div class="header">
+            <div class="main-title">
+                <img src="./main-title.png" alt="">
+            </div>
+            <div class="sub-title">
+                <img src="./sub-title.png" alt="">
+            </div>
+        </div>
+    </div>
+
+
+
+    <script>
+
+        let teamList = ["1번팀", "2번팀", "3번팀", "4번팀", "5번팀", "6번팀", "7번팀", "8번팀", "9번팀", "10번팀", "11번팀", "12번팀", "13번팀", "14번팀"];
+        let itemList = [
+            {theme: "푸드/농업", age: "MZ 세대"}, 
+            {theme: "푸드/농업", age: "MZ 세대" }, 
+            {theme: "푸드/농업", age: "직장인 세대" }, 
+            {theme: "푸드/농업", age: "노인 세대" }, 
+            {theme: "푸드/농업", age: "노인 세대" },
+            {theme: "소셜미디어/커뮤니티", age: "MZ 세대" },
+            {theme: "소셜미디어/커뮤니티", age: "MZ 세대" },
+            {theme: "소셜미디어/커뮤니티", age: "직장인 세대" },
+            {theme: "소셜미디어/커뮤니티", age: "노인 세대" },
+            {theme: "여행/레저", age: "MZ 세대" },
+            {theme: "여행/레저", age: "직장인 세대" },
+            {theme: "여행/레저", age: "직장인 세대" },
+            {theme: "여행/레저", age: "노인 세대" },
+            {theme: "여행/레저", age: "노인 세대" },
+        ]
+
+        function getRandomAndRemove(list) {
+            const randomIndex = Math.floor(Math.random() * list.length);
+            const randomItem = list[randomIndex];
+            list.splice(randomIndex, 1);
+            return randomItem;
+        }
+
+        for (let i = 0; i < 14; i++) {
+                console.log(i)
+                console.log(getRandomAndRemove(teamList));
+                console.log(getRandomAndRemove(itemList));
+            }
+
+    </script>
+</body>
+</html>
