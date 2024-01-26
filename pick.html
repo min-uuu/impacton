@@ -80,6 +80,10 @@
             margin-bottom: 10vh;
         }
 
+        #theme {
+            margin-bottom: 2vh;
+        }
+
     </style>
 </head>
 
@@ -137,6 +141,22 @@
             { theme: "여행/레저", gen: "노인 세대" },
             { theme: "여행/레저", gen: "노인 세대" },
         ]
+        let itemListFixed = [
+                { theme: "푸드/농업", gen: "MZ 세대" },
+                { theme: "푸드/농업", gen: "MZ 세대" },
+                { theme: "푸드/농업", gen: "직장인 세대" },
+                { theme: "푸드/농업", gen: "노인 세대" },
+                { theme: "푸드/농업", gen: "노인 세대" },
+                { theme: "소셜미디어/커뮤니티", gen: "MZ 세대" },
+                { theme: "소셜미디어/커뮤니티", gen: "MZ 세대" },
+                { theme: "소셜미디어/커뮤니티", gen: "직장인 세대" },
+                { theme: "소셜미디어/커뮤니티", gen: "노인 세대" },
+                { theme: "여행/레저", gen: "MZ 세대" },
+                { theme: "여행/레저", gen: "직장인 세대" },
+                { theme: "여행/레저", gen: "직장인 세대" },
+                { theme: "여행/레저", gen: "노인 세대" },
+                { theme: "여행/레저", gen: "노인 세대" },
+            ]
 
         function getRandomAndRemove(list) {
             const randomIndex = Math.floor(Math.random() * list.length);
@@ -185,16 +205,66 @@
             rollingTeam();
         }
 
-        function secondRolling() {
-            let item = getRandomAndRemove(itemList);
-            let theme = item.theme;
-            let gen = item.gen
 
-            document.getElementById('theme').innerHTML = theme;
-            document.getElementById('gen').innerHTML = gen;
+        function secondRolling() {
+            let theme;
+            let gen;
+
+            function randomItem() {
+                let item = getRandomAndRemove(itemList);
+                theme = item.theme;
+                gen = item.gen
+            }
+
+
+
+
+            async function sleep(ms) {
+                return new Promise(resolve => setTimeout(resolve, ms));
+            }
+
+            let rollingItemTemp = 0
+
+            function rollingThemeFunction() {
+                document.getElementById('theme').innerHTML = itemListFixed[rollingItemTemp % 13].theme;
+                rollingItemTemp = rollingItemTemp + 1
+            }
+
+            function rollingGenFunction() {
+                document.getElementById('gen').innerHTML = itemListFixed[rollingItemTemp % 13].gen;
+                rollingItemTemp = rollingItemTemp + 1
+            }
+
+            async function rollingTeam() {
+                randomItem();
+                for (let i = 0; i < 100; i++) {
+                    rollingThemeFunction();
+                    await sleep(20);
+                }
+                document.getElementById('theme').innerHTML = theme;
+                for (let i = 0; i < 30; i++) {
+                    rollingGenFunction();
+                    await sleep(60);
+                }
+                document.getElementById('gen').innerHTML = gen;
+            }
+            
+            rollingTeam();
 
             orderNumber = orderNumber + 1
         }
+
+
+        // function secondRolling() {
+        //     let item = getRandomAndRemove(itemList);
+        //     let theme = item.theme;
+        //     let gen = item.gen
+
+        //     document.getElementById('theme').innerHTML = theme;
+        //     document.getElementById('gen').innerHTML = gen;
+
+        //     orderNumber = orderNumber + 1
+        // }
 
         let general = 1
 

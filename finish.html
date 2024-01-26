@@ -1,11 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" as="style" crossorigin
+        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
     <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "pretendard";
+        }
+
+        .content {
+            display: flex;
+            width: 100vw;
+            height: 100vh;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+
+        .header {
+            display: flex;
+            width: 100vw;
+            height: 30vh;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+
+        #main-title {
+            height: 5vh;
+            margin-bottom: 5vh;
+        }
+
+        #sub-title {
+            height: 10vh;
+            margin-bottom: 10vh;
+        }
+
+        .title {
+            font-size: 5vh;
+            font-weight: 800;
+            margin-bottom: 5vh;
+        }
+    </style>
 </head>
+
 <body>
-    good!
+
+    <div class="content">
+        <div class="header">
+            <img id="main-title" src="./main-title.png" alt="">
+            <img id="sub-title" src="./sub-title.png" alt="">
+        </div>
+        <div class="title">
+            <div>주제 선택 완료!</div>
+        </div>
+    </div>
 </body>
+
 </html>
